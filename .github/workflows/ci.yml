@@ -1,0 +1,15 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: cimg/go:1.12.9
+    steps:
+      - run: echo "Content moved to the server branch"
