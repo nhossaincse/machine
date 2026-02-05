@@ -1,0 +1,15 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: golang:1.12.9
+    steps:
+      - name: Echo message
+        run: echo "Content moved to the server branch"
