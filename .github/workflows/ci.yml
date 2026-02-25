@@ -10,4 +10,5 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
       - name: Build
+        if: hashFiles('**/pom.xml') != ''
         run: mvn -B package --fail-at-end
