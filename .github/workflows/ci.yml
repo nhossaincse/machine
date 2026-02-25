@@ -11,6 +11,7 @@ jobs:
       with:
         distribution: temurin
         java-version: 25
+        maven-version: '3.9.8'
     - run: |
         if [ -f pom.xml ]; then
           mvn -B package --fail-at-end
