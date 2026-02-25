@@ -11,4 +11,4 @@ jobs:
           distribution: 'temurin'
       - name: Build
         if: hashFiles('**/pom.xml') != ''
-        run: mvn -B package --fail-at-end
+        run: mvn -B package --fail-at-end -f $(find . -name pom.xml | head -1)
