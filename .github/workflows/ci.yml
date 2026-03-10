@@ -9,5 +9,5 @@ jobs:
         with:
           java-version: '25'
           distribution: 'temurin'
-      - if: hashFiles('pom.xml') != ''
-        run: mvn -B package --fail-at-end
+      - run: |
+          if [ -f pom.xml ]; then
