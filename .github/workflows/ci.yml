@@ -11,4 +11,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-      - run: mvn -B -f "$(find "$GITHUB_WORKSPACE" -name pom.xml -not -path '*/target/*' | head -n 1)" package --fail-at-end
+      - run: |
+          POM_FILE="$(find "$GITHUB_WORKSPACE" -name pom.xml -not -path '*/target/*' | head -n 1)"
+          mvn -B -f "$POM_FILE" package --fail-at-end
