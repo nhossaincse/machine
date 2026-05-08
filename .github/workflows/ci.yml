@@ -14,5 +14,4 @@ jobs:
       - run: |
           pom="$(find "$GITHUB_WORKSPACE" -name pom.xml -not -path '*/target/*' -print -quit)"
           test -n "$pom"
-          cd "$(dirname "$pom")"
-          mvn -B package --fail-at-end
+          mvn -B -f "$pom" package --fail-at-end
