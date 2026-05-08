@@ -13,4 +13,6 @@ jobs:
           java-version: '25'
       - run: |
           pom="$(find "$GITHUB_WORKSPACE" -name pom.xml -not -path '*/target/*' -print -quit)"
-          mvn -B -f "$pom" package --fail-at-end
+          test -n "$pom"
+          cd "$(dirname "$pom")"
+          mvn -B package --fail-at-end
