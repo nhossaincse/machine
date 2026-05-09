@@ -13,4 +13,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-      - run: mvn -B package --fail-at-end
+      - run: |
+          POM_FILE="$(find . -name pom.xml -not -path '*/target/*' | head -n 1)"
+          mvn -B -f "$POM_FILE" package --fail-at-end
