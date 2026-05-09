@@ -14,9 +14,9 @@ jobs:
           distribution: temurin
           java-version: '25'
       - run: |
-          POM_FILE="$(find "$GITHUB_WORKSPACE" -name pom.xml -not -path '*/target/*' -print -quit)"
-          if [ -z "$POM_FILE" ]; then
-            echo "No pom.xml found; skipping Maven build."
+          POM_FILE="$(find "$GITHUB_WORKSPACE" -type f -name pom.xml -not -path '*/target/*' -print -quit)"
+          if [ -z "$POM_FILE" ] || [ ! -r "$POM_FILE" ]; then
+            echo "No readable pom.xml found; skipping Maven build."
             exit 0
           fi
           mvn -B -f "$POM_FILE" package --fail-at-end
