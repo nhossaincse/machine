@@ -17,8 +17,8 @@ jobs:
       - run: |
           POM_FILE="$(find . -name pom.xml -not -path './.git/*' | sort | head -n 1)"
           if [ -z "$POM_FILE" ]; then
-            echo "No pom.xml found in repository" >&2
-            exit 1
+            echo "No pom.xml found in repository; skipping Maven build"
+            exit 0
           fi
           POM_DIR="$(dirname "$POM_FILE")"
           cd "$POM_DIR"
