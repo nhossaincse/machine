@@ -15,9 +15,10 @@ jobs:
           distribution: temurin
           java-version: '25'
       - run: |
-          POM_FILE="$(find . -name pom.xml -not -path '*/target/*' | head -n 1)"
+          POM_FILE="$(find "$GITHUB_WORKSPACE" -name pom.xml -not -path '*/target/*' | head -n 1)"
           if [ -z "$POM_FILE" ]; then
             echo "No pom.xml found"
             exit 1
           fi
-          mvn -B -f "$POM_FILE" package --fail-at-end
+          cd "$(dirname "$POM_FILE")"
+          mvn -B package --fail-at-end
