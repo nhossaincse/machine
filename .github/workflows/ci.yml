@@ -15,12 +15,13 @@ jobs:
           distribution: temurin
           java-version: '25'
       - run: |
-          if [ ! -f pom.xml ]; then
+          if [ -f pom.xml ]; then
+            POM_FILE="pom.xml"
+          else
             POM_FILE="$(find . -name pom.xml -not -path './.git/*' -print -quit)"
             if [ -z "$POM_FILE" ]; then
               echo "No pom.xml found in the repository."
               exit 1
             fi
-            cd "$(dirname "$POM_FILE")"
           fi
-          mvn -B package --fail-at-end
+          mvn -B -f "$POM_FILE" package --fail-at-end
