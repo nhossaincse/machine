@@ -20,4 +20,5 @@ jobs:
             echo "No pom.xml found in the repository."
             exit 1
           fi
-          mvn -B -f "$pom_file" package --fail-at-end
+          cd "$(dirname "$pom_file")"
+          mvn -B package --fail-at-end
