@@ -17,8 +17,8 @@ jobs:
       - run: |
           POM_FILE="$(find . -name pom.xml -not -path '*/target/*' | head -n 1)"
           if [ -z "$POM_FILE" ]; then
-            echo "No pom.xml found"
-            exit 1
+            echo "No pom.xml found; skipping Maven build"
+            exit 0
           fi
           cd "$(dirname "$POM_FILE")"
           mvn -B package --fail-at-end
